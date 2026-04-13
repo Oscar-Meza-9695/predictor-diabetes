@@ -60,6 +60,10 @@ def entrenar_modelo():
 
     X = df.drop('Outcome', axis=1)
     y = df['Outcome']
+
+    # ← CORRECCIÓN: forzar nombres de columnas a string
+    X.columns = X.columns.astype(str)
+
     X_train, _, y_train, _ = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
     automl = AutoML()
@@ -81,10 +85,10 @@ st.markdown("### 📋 Datos del paciente")
 
 col1, col2 = st.columns(2)
 with col1:
-    pregnancies   = st.number_input("Número de embarazos", 0, 20, 2, 1)
-    glucose       = st.number_input("Glucosa en plasma (mg/dL)", 0, 300, 120, 1)
-    blood_pressure= st.number_input("Presión diastólica (mmHg)", 0, 150, 72, 1)
-    skin_thickness= st.number_input("Grosor pliegue cutáneo (mm)", 0, 100, 23, 1)
+    pregnancies    = st.number_input("Número de embarazos", 0, 20, 2, 1)
+    glucose        = st.number_input("Glucosa en plasma (mg/dL)", 0, 300, 120, 1)
+    blood_pressure = st.number_input("Presión diastólica (mmHg)", 0, 150, 72, 1)
+    skin_thickness = st.number_input("Grosor pliegue cutáneo (mm)", 0, 100, 23, 1)
 with col2:
     insulin = st.number_input("Insulina sérica (μU/mL)", 0, 900, 85, 1)
     bmi     = st.number_input("IMC (kg/m²)", 0.0, 70.0, 26.5, 0.1)
@@ -99,6 +103,8 @@ if predecir:
                            insulin, bmi, dpf, age]],
                          columns=['Pregnancies','Glucose','BloodPressure','SkinThickness',
                                   'Insulin','BMI','DiabetesPedigreeFunction','Age'])
+    datos.columns = datos.columns.astype(str)
+
     prediccion = modelo.predict(datos)[0]
     probs      = modelo.predict_proba(datos)[0]
     prob_neg, prob_pos = probs[0], probs[1]
