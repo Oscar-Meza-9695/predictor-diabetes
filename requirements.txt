@@ -2,6 +2,7 @@ streamlit
 scikit-learn
 joblib
 pandas
-flaml
 xgboost
 lightgbm
+numpy<2.0
+flaml[automl]
