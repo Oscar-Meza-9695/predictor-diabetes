@@ -4,5 +4,4 @@ joblib
 pandas
 xgboost
 lightgbm
-numpy<2.0
 flaml[automl]
