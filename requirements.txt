@@ -1,7 +1,8 @@
 streamlit
-scikit-learn
+scikit-learn==1.3.2
 joblib
 pandas
-xgboost
+xgboost==1.7.6
 lightgbm
-flaml[automl]
+numpy==1.26.4
+flaml[automl]==2.1.0
