@@ -76,7 +76,7 @@ st.divider()
 # ─────────────────────────────────────────────
 @st.cache_resource
 def cargar_modelo():
-    ruta = "modelo_diabetes_flaml.pkl"
+    ruta = os.path.join(os.path.dirname(__file__), "modelo_diabetes_flaml.pkl")
     if os.path.exists(ruta):
         return joblib.load(ruta)
     return None
